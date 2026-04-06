@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "gnome-shell":  -5,
+    "sshd":         -3,
+    "systemd":      -3,
+    "python3":       5,
+    "dbus-daemon":   5,
+    "cupsd":        10,
+    "cups-browsed": 10,
+    "avahi-daemon": 10,
+    "polkitd":       7
+  }
+}

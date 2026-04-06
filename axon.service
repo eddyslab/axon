@@ -1,0 +1,29 @@
+[Unit]
+Description=Axon OS Scheduler Engine
+Documentation=https://github.com/axon-os/axon
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/bin/axon_engine.py
+Restart=on-failure
+RestartSec=5s
+
+# 룰 리로드: sudo systemctl kill -s SIGHUP axon
+ExecReload=/bin/kill -HUP $MAINPID
+
+# 권한
+User=root
+
+# 로그
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=axon
+
+# 보안 (eBPF 필요 항목만 허용)
+NoNewPrivileges=false
+ProtectSystem=false
+
+[Install]
+WantedBy=multi-user.target
